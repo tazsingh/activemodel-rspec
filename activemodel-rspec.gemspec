@@ -4,8 +4,8 @@ require File.expand_path('../lib/activemodel-rspec/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["matthooks"]
   gem.email         = ["matthooks@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{RSpec matchers for ActiveModel}
+  gem.summary       = %q{RSpec matchers for ActiveModel}
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
