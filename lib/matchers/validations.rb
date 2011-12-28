@@ -12,6 +12,16 @@ module ActiveModelMatchers
         self
       end
 
+      def unless(condition)
+        @unless = condition
+        self
+      end
+
+      def if(condition)
+        @if = condition
+        self
+      end
+
       def matches?(actual)
         @klass = actual.is_a?(Class) ? actual : actual.class
         @validator = @klass.validators_on(@field).detect { |validator| validator.kind.to_s == @type }
@@ -28,6 +38,24 @@ module ActiveModelMatchers
             @positive_result_message = "with message #{@message}"
           else
             @negative_result_message = "without message #{@message}"
+            return false
+          end
+        end
+
+        if @unless.present?
+          if @unless == @validator.options[:unless]
+            @positive_result_message = "with unless condition #{@unless}"
+          else
+            @negative_result_message = "without unless condition #{@unless}"
+            return false
+          end
+        end
+
+        if @if.present?
+          if @if == @validator.options[:if]
+            @positive_result_message = "with if condition #{@if}"
+          else
+            @negative_result_message = "without if condition #{@if}"
             return false
           end
         end
