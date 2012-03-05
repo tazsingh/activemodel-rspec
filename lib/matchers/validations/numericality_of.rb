@@ -10,6 +10,11 @@ module ActiveModelMatchers
         self
       end
 
+      def greater_than_or_equal_to(n)
+        @greater_than_or_equal_to = n
+        self
+      end
+
       def matches?(actual)
         result = nil
 
@@ -27,6 +32,17 @@ module ActiveModelMatchers
             result = false
           end
 
+        end
+
+        if @greater_than_or_equal_to.present?
+          gte = @validator.options[:greater_than_or_equal_to] == @greater_than_or_equal_to
+
+          if gte == true
+            @positive_result_message = "#{@positive_result_message} to be gte to #{@greater_than_or_equal_to}"
+          else
+            @negative_result_message = "#{@negative_result_message} not to be gte to #{@greater_than_or_equal_to}"
+            result = false
+          end
         end
 
         result
