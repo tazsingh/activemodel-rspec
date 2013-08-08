@@ -18,5 +18,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   
   gem.add_dependency 'rspec'
-  gem.add_dependency 'activemodel', '~> 3.0'
+  gem.add_dependency 'activemodel', '>= 3.0'
 end
